@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="CalculeazaMediaAn">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="72" width="500" height="381"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="aeacb" class="javax.swing.JLabel">
+        <constraints border-constraint="North"/>
+        <properties>
+          <text value="Introdu anul"/>
+        </properties>
+      </component>
+      <component id="56451" class="javax.swing.JButton" binding="inapoiButton" default-binding="true">
+        <constraints border-constraint="South"/>
+        <properties>
+          <text value="Inapoi"/>
+        </properties>
+      </component>
+      <component id="c9723" class="javax.swing.JTextField" binding="keyText">
+        <constraints border-constraint="Center"/>
+        <properties>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="bb62e" class="javax.swing.JButton" binding="calculeazaButton" default-binding="true">
+        <constraints border-constraint="East"/>
+        <properties>
+          <text value="Calculeaza"/>
+        </properties>
+      </component>
+      <hspacer id="ea422">
+        <constraints border-constraint="West"/>
+      </hspacer>
+    </children>
+  </grid>
+</form>
