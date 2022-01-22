@@ -1,8 +1,8 @@
 import javax.swing.*;
-import java.io.FileNotFoundException;
+import java.beans.XMLDecoder;
+import java.io.*;
 import java.lang.reflect.Array;
 import java.util.*;
-import java.io.File;
 
 enum LOAD_TYPE {
 	HARDCODAT, KEYBOARD, FILE
@@ -12,8 +12,11 @@ enum DISPLAY_TYPE  {
 	CONSOLA, FISIER, GUI
 }
 
+
+
 public class TestClass {
-	public static void main(String[] args) {
+
+    public static void main(String[] args) {
 		/* Incarcare setari si populare*/
 		Settings.populateSettings();
 		IDataLoader dataLoader;
@@ -21,7 +24,7 @@ public class TestClass {
 		List<Curs> cursuri = new ArrayList<Curs>();
 		List<Profesor> profesori = new ArrayList<Profesor>();
 
-		System.out.println(Settings.loadType);
+
 
 		switch (Settings.loadType)
 		{
@@ -57,10 +60,12 @@ public class TestClass {
 		UserInterface u = new UserInterface(m);
 		ConsoleInterface cI = new ConsoleInterface(m);
 
+
 		Thread UIThreadGUI = new Thread(u);
 		Thread UIThreadConsole = new Thread(cI);
 		UIThreadGUI.start();
 		UIThreadConsole.start();
+
 
 	}
 }

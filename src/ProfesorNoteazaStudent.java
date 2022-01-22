@@ -103,7 +103,7 @@ public class ProfesorNoteazaStudent {
                     ///si celalalt este nota
                     Curs c = ApplicationResources.getSpecificCourse(numeCurs);
                     Student s = new Student(numeStudent,prenumeStudent,grupaStudent);
-                    System.out.println(s);
+
 
                     if(c!=null)
                     {

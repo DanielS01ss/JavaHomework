@@ -20,25 +20,33 @@ public class ConsoleInterface implements Runnable{
 
     public void runConsole()
     {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Username = ");
-        var username = sc.next();
-        System.out.println("Password = ");
-        var password = sc.next();
+
 
         User currentUser;
         UserAccountType accType = null;
         HashMap<String,String> accHolderInfo = new HashMap<String,String>();
+        boolean success = false;
+        var username="";
+        var password="";
+        Scanner sc = new Scanner(System.in);
+        while(!success)
+        {
+            try {
 
-        try {
-            Application.getInstance().login(new User(username, password));
-            currentUser =  Application.getInstance().currentUser;
-            accHolderInfo = Application.getInstance().currentUser.menuStrategy.getAccountHolderInformation();
-            accType = Application.getInstance().currentUser.menuStrategy.getAccountType();
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+                System.out.println("Username = ");
+                username = sc.next();
+                System.out.println("Password = ");
+                password = sc.next();
+                Application.getInstance().login(new User(username, password));
+                currentUser =  Application.getInstance().currentUser;
+                accHolderInfo = Application.getInstance().currentUser.menuStrategy.getAccountHolderInformation();
+                accType = Application.getInstance().currentUser.menuStrategy.getAccountType();
+                success = true;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
+
 
 
         /* Afisare in functie de tipul de afisare setat! */

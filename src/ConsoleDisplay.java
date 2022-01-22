@@ -27,7 +27,7 @@ public class ConsoleDisplay implements IDisplayManager {
         if (cursuri.length == 0)
         {
             System.out.println("Nu exista cursuri!!");
-            System.out.println("Apasa orice tasta pentru a continua");
+            System.out.println("Apasa orice tasta pentru a continua si apoi enter");
             Scanner sc = new Scanner(System.in);
             sc.nextLine();
             return;
@@ -36,7 +36,7 @@ public class ConsoleDisplay implements IDisplayManager {
             System.out.println(c);
         }
         System.out.println();
-        System.out.println("Apasa orice tasta pentru a continua");
+        System.out.println("Apasa orice tasta pentru a continua si apoi enter");
         Scanner sc = new Scanner(System.in);
         sc.nextLine();
     }
@@ -47,7 +47,7 @@ public class ConsoleDisplay implements IDisplayManager {
         if(p.cursuri.size() == 0)
         {
             System.out.println("Nu aveti cursuri la care sa afisati studenti!");
-            System.out.println("Apasa orice tasta pentru a continua");
+            System.out.println("Apasa orice tasta pentru a continua si apoi enter");
             sc.nextLine();
             return;
         }
@@ -82,7 +82,7 @@ public class ConsoleDisplay implements IDisplayManager {
 
         Curs selectedCourse = c.get(option-1);
         displayStudents( Convert.convertToStudent(selectedCourse.getStudenti()));
-        System.out.println("Apasa orice tasta pentru a continua");
+        System.out.println("Apasa orice tasta si apoi enter pentru a continua");
         sc.nextLine();
     }
 
@@ -91,6 +91,13 @@ public class ConsoleDisplay implements IDisplayManager {
         ArrayList<Curs> c = p.cursuri;
         Scanner sc = new Scanner(System.in);
 
+        if(c.size() == 0)
+        {
+            System.out.println("Nu aveti cursuri la care sa puteti nota studentii!!");
+            System.out.println("Apasati orice tasta pentru a continua si apoi enter");
+            sc.nextLine();
+            return;
+        }
         System.out.println("Selecteaza cursul la care vrei sa notezi studentul:");
         for(int i= 0;i<c.size();i++)
         {
@@ -183,7 +190,7 @@ public class ConsoleDisplay implements IDisplayManager {
             c.AfisareNoteStudentCurs(s);
             System.out.println();
         }
-        System.out.println("Pentru a continua apasati orice tasta!");
+        System.out.println("Apasati orice tasta pentru a continua si apoi enter!");
         sc.nextLine();
     }
 
@@ -195,7 +202,7 @@ public class ConsoleDisplay implements IDisplayManager {
             c.AfisareNumeCurs();
         }
 
-        System.out.println("Apasati orice tasta pentru a continua!");
+        System.out.println("Apasati orice tasta pentru a continua si apoi enter!");
         sc.next();
     }
 
@@ -226,7 +233,7 @@ public class ConsoleDisplay implements IDisplayManager {
             System.out.println("Media studentului din anul universitar "+an+" este:"+medie);
         }
 
-        System.out.println("Introduceti orice tasta pentru a continua");
+        System.out.println("Apasa orice tasta pentru a continua si apoi enter");
         sc.nextLine();
 
     }
@@ -235,7 +242,7 @@ public class ConsoleDisplay implements IDisplayManager {
     {
         Scanner sc = new Scanner(System.in);
         s.afisareRestante();
-        System.out.println("Apasati orice tasta pentru a continua");
+        System.out.println("Apasati orice tasta pentru a continua si apoi enter");
         sc.nextLine();
     }
 

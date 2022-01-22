@@ -1,16 +1,13 @@
 import java.beans.ExceptionListener;
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 public class Application {
     private static Application single_instance = null;
-    private List<User> userList = new ArrayList<>();
+    private List<User> userList = new ArrayList<User>();
 
     public User currentUser = null;
 
@@ -21,6 +18,14 @@ public class Application {
         return  single_instance;
     }
 
+    public List<User> getUserList()
+    {
+        return this.userList;
+    }
+    public void addNewUser(User newUser)
+    {
+        userList.add(newUser);
+    }
     private Application() {
          /* HardcodatDataManager dataManager = new HardcodatDataManager();
         Random r = new Random();
@@ -52,6 +57,23 @@ public class Application {
     }
 
     public  void initUsers() {
+
+
+        try{
+            File f = new File("users.xml");
+            FileReader fr = new FileReader(f);
+            if (fr.read()==-1){
+               this.userList = new ArrayList<User>();
+               return;
+            }
+        } catch(IOException e)
+        {
+            e.printStackTrace();
+            this.userList = new ArrayList<User>();
+            return;
+        }
+
+
         try (FileInputStream fis = new FileInputStream("users.xml")) {
             XMLDecoder decoder = new XMLDecoder(fis);
             this.userList = (ArrayList<User>)decoder.readObject();
@@ -59,9 +81,14 @@ public class Application {
             fis.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            this.userList = null;
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setUserList(List<User> myUserList){
+        userList = myUserList;
     }
 
     public void login(User user) throws Exception {

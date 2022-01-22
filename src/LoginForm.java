@@ -19,7 +19,7 @@ public class LoginForm {
                         HashMap<String,String> accHolderInfo = Application.getInstance().currentUser.menuStrategy.getAccountHolderInformation();
                         UserAccountType accType = Application.getInstance().currentUser.menuStrategy.getAccountType();
                         Iterator<Map.Entry<String, String>> iterator = accHolderInfo.entrySet().iterator();
-                        System.out.println(accType);
+
                         if(accType == UserAccountType.STUDENT)
                         {
                             Map.Entry<String,String> value = iterator.next();
@@ -28,8 +28,10 @@ public class LoginForm {
                             value = iterator.next();
                             String line2 = value.getValue();
                             int grupa = Integer.parseInt(line2);
-                            Student loggedStudent = new Student(nume,prenume,grupa);
-                            loggedStudent = ApplicationResources.mg.populateEnrolledCourseStudent(loggedStudent);
+                            Student loggedStudent;
+                            loggedStudent = currentUser.studentAccType;
+
+                            ApplicationResources.mg.populateEnrolledCourseStudent(loggedStudent);
                             ApplicationResources.loggedStudent = loggedStudent;
                             mainPanel.setVisible(false);
                             owner.setContentPane(new StudentForm(owner).getMainPanel());
@@ -37,7 +39,7 @@ public class LoginForm {
                         } else if(accType == UserAccountType.TEACHER)
                         {
                             Map.Entry<String,String> value = iterator.next();
-                            Profesor p = new Profesor(value.getKey(), value.getValue());
+                            Profesor p = currentUser.profesorAccType;
                             p.cursuri = ApplicationResources.mg.getProfessorCursuri(p);
                             ApplicationResources.loggedProfesor = p;
                             mainPanel.setVisible(false);

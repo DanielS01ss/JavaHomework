@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
+import java.util.List;
 
 public class Register {
     private JTextField textField1;
@@ -69,11 +70,25 @@ public class Register {
                         if(ApplicationResources.studenti.indexOf(studentToCreate)!=-1)
                         {
                             JOptionPane.showMessageDialog(null,"User a fost creeat cu succes!");
+                            User newUser = new User();
+                            newUser.userName = username;
+                            newUser.password = password;
+                            newUser.studentAccType = studentToCreate;
+                            newUser.menuStrategy = new StudentStrategy(studentToCreate);
+                            List<User> users = Application.getInstance().getUserList();
+                            users.add(newUser);
+                            Application.getInstance().setUserList(users);
+
+                            FileHandler.writeToXMLUsers(Application.getInstance().getUserList());
+                            mainPannel.setVisible(false);
+                            owner.setContentPane(new LoginForm(owner).getMainPanel());
                         }
                         else {
                             JOptionPane.showMessageDialog(null,"Studentul nu este inregistrat!","Error",JOptionPane.ERROR_MESSAGE);
                             return;
                         }
+
+
                     } else if(accType == UserAccountType.TEACHER)
                     {
                         Profesor profesorToCreate = new Profesor(nume,prenume);
@@ -81,14 +96,24 @@ public class Register {
                         if(ApplicationResources.profesori.indexOf(profesorToCreate)!=-1)
                         {
                             JOptionPane.showMessageDialog(null,"User a fost creeat cu success!");
+                            User newUser = new User();
+                            newUser.userName = username;
+                            newUser.password = password;
+                            newUser.profesorAccType = profesorToCreate;
+                            newUser.menuStrategy = new TeacherStrategy(profesorToCreate);
+                            List<User> users = Application.getInstance().getUserList();
+                            users.add(newUser);
+                            Application.getInstance().setUserList(users);
+                            FileHandler.writeToXMLUsers(Application.getInstance().getUserList());
+                            mainPannel.setVisible(false);
+                            owner.setContentPane(new LoginForm(owner).getMainPanel());
                         }
                         else {
                             JOptionPane.showMessageDialog(null,"Profesorul nu este inregistrat in baza de date!","Error",JOptionPane.ERROR_MESSAGE);
                             return;
                         }
                     }
-                  mainPannel.setVisible(false);
-                  owner.setContentPane(new LoginForm(owner).getMainPanel());
+
                 }
             }
         });

@@ -8,6 +8,8 @@ public class User {
     public String userName;
     public String password;
     public MenuStrategy menuStrategy;
+    public Student studentAccType ;
+    public Profesor profesorAccType;
     public User() {
 
     }
